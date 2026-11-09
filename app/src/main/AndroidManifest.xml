@@ -41,6 +41,10 @@
         <activity android:name=".ui.seller.SellerActivity" android:exported="false" />
         <activity android:name=".ui.seller.ProductFormActivity" android:exported="false" />
 
+        <activity android:name=".ui.admin.AdminActivity" android:exported="false" />
+        <activity android:name=".ui.admin.UserFormActivity" android:exported="false" />
+        <activity android:name=".ui.admin.SalesReportActivity" android:exported="false" />
+
     </application>
 
 </manifest>

@@ -11,6 +11,7 @@ import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import com.castro.solopan.R
 import com.castro.solopan.databinding.ActivityLoginBinding
+import com.castro.solopan.ui.admin.AdminActivity
 import com.castro.solopan.ui.buyer.BuyerActivity
 import com.castro.solopan.ui.seller.SellerActivity
 
@@ -82,12 +83,14 @@ class LoginActivity : AppCompatActivity() {
     private fun goToHome() {
         val email = binding.etEmail.text.toString().lowercase()
         val destination = when {
+            email.contains("admin") -> AdminActivity::class.java
             email.contains("vendedor") -> SellerActivity::class.java
             else -> BuyerActivity::class.java
         }
         startActivity(Intent(this, destination))
         finish()
     }
+
     private fun showMessage(messageRes: Int) {
         Toast.makeText(this, messageRes, Toast.LENGTH_SHORT).show()
     }

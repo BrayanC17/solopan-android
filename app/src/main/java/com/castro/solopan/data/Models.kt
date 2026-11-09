@@ -93,3 +93,70 @@ object SellerStore {
 
     fun delete(id: Int) { products.removeAll { it.id == id } }
 }
+
+data class AppUser(
+    val id: Int,
+    var name: String,
+    var email: String,
+    var role: String,
+    var active: Boolean
+)
+
+data class Pqr(
+    val id: Int,
+    val type: String,
+    val detail: String,
+    val due: String,
+    var resolved: Boolean
+)
+
+data class SalesRow(val bakery: String, val total: Int)
+
+data class ReportedProduct(
+    val id: Int,
+    val name: String,
+    val bakery: String,
+    val reason: String,
+    var hidden: Boolean
+)
+
+object AdminStore {
+    val users = mutableListOf(
+        AppUser(1, "María Fernanda Rojas", "mfernanda@correo.com", "Comprador", true),
+        AppUser(2, "Panadería La Espiga", "laespiga@correo.com", "Panadería", true),
+        AppUser(3, "Carlos Peña", "cpena@correo.com", "Comprador", false),
+        AppUser(4, "Horno Dorado", "hornodorado@correo.com", "Panadería", true)
+    )
+
+    val pending = mutableListOf(
+        "Panadería El Trigal · Solicitud de registro (NIT 900.123.456-7)",
+        "Panadería Dulce Sabor · Solicitud de registro (NIT 901.222.333-1)"
+    )
+
+    val reported = mutableListOf(
+        ReportedProduct(1, "Almojábana x6", "Pan de Barrio", "Descripción engañosa", false),
+        ReportedProduct(2, "Roscón de guayaba", "Panadería La Espiga", "Precio sin IVA", false)
+    )
+
+    val pqrs = mutableListOf(
+        Pqr(318, "Queja", "Pedido #1038 no fue entregado", "Vence en 2 días", false),
+        Pqr(317, "Petición", "Reembolso por empaque dañado", "Vence en 9 días", false),
+        Pqr(315, "Reclamo", "Cobro duplicado en la pasarela", "Vence en 12 días", false)
+    )
+
+    val sales = listOf(
+        SalesRow("Panadería La Espiga", 4186500),
+        SalesRow("Pan de Barrio", 2310000),
+        SalesRow("Horno Dorado", 1745200)
+    )
+
+    fun findUser(id: Int) = users.firstOrNull { it.id == id }
+    fun nextUserId() = (users.maxOfOrNull { it.id } ?: 0) + 1
+
+    fun upsert(user: AppUser) {
+        val index = users.indexOfFirst { it.id == user.id }
+        if (index >= 0) users[index] = user else users.add(user)
+    }
+
+    fun deleteUser(id: Int) { users.removeAll { it.id == id } }
+}
