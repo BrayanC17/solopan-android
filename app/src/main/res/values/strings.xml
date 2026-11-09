@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Solopan</string>
+    <string name="app_slogan">Las panaderías de tu zona, en una sola app</string>
+
+    <!-- Login -->
+    <string name="login_welcome">Bienvenido</string>
+    <string name="hint_email">Correo electrónico</string>
+    <string name="hint_password">Contraseña</string>
+    <string name="placeholder_email">correo@ejemplo.com</string>
+    <string name="placeholder_password">Mínimo 8 caracteres</string>
+    <string name="btn_login">Iniciar sesión</string>
+    <string name="login_or_continue">o continúa con</string>
+    <string name="btn_biometric">Ingresar con huella</string>
+    <string name="btn_google">Continuar con Google</string>
+    <string name="link_forgot_password">¿Olvidaste tu contraseña?</string>
+    <string name="login_new_user">¿Eres nuevo?</string>
+    <string name="link_create_account">Crear cuenta</string>
 </resources>
