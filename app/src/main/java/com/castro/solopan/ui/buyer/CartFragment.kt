@@ -1,13 +1,12 @@
 package com.castro.solopan.ui.buyer
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.castro.solopan.R
 import com.castro.solopan.data.CartManager
 import com.castro.solopan.data.toCop
 import com.castro.solopan.databinding.FragmentCartBinding
@@ -29,8 +28,19 @@ class CartFragment : Fragment() {
         binding.rvCart.adapter = CartAdapter { updateTotals() }
         binding.toggleDelivery.addOnButtonCheckedListener { _, _, _ -> updateTotals() }
         binding.btnCheckout.setOnClickListener {
-            Toast.makeText(requireContext(), R.string.msg_payment_soon, Toast.LENGTH_SHORT).show()
+            val delivery = if (binding.btnDelivery.isChecked) DELIVERY_COST else 0
+            startActivity(
+                Intent(requireContext(), PaymentActivity::class.java)
+                    .putExtra(PaymentActivity.EXTRA_TOTAL, CartManager.subtotal() + delivery)
+            )
         }
+        updateTotals()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Al volver del pago, el carrito puede haberse vaciado
+        binding.rvCart.adapter = CartAdapter { updateTotals() }
         updateTotals()
     }
 

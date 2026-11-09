@@ -36,6 +36,11 @@
         <activity android:name=".ui.buyer.BuyerActivity" android:exported="false" />
         <activity android:name=".ui.buyer.BakeryActivity" android:exported="false" />
 
+        <activity android:name=".ui.buyer.ProductDetailActivity" android:exported="false" />
+        <activity android:name=".ui.buyer.PaymentActivity" android:exported="false" />
+        <activity android:name=".ui.seller.SellerActivity" android:exported="false" />
+        <activity android:name=".ui.seller.ProductFormActivity" android:exported="false" />
+
     </application>
 
 </manifest>

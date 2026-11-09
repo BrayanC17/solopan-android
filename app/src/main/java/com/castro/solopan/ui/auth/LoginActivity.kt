@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat
 import com.castro.solopan.R
 import com.castro.solopan.databinding.ActivityLoginBinding
 import com.castro.solopan.ui.buyer.BuyerActivity
+import com.castro.solopan.ui.seller.SellerActivity
 
 class LoginActivity : AppCompatActivity() {
 
@@ -79,10 +80,14 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun goToHome() {
-        startActivity(Intent(this, BuyerActivity::class.java))
+        val email = binding.etEmail.text.toString().lowercase()
+        val destination = when {
+            email.contains("vendedor") -> SellerActivity::class.java
+            else -> BuyerActivity::class.java
+        }
+        startActivity(Intent(this, destination))
         finish()
     }
-
     private fun showMessage(messageRes: Int) {
         Toast.makeText(this, messageRes, Toast.LENGTH_SHORT).show()
     }

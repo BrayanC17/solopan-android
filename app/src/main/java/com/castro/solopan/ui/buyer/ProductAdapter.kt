@@ -9,7 +9,8 @@ import com.castro.solopan.databinding.ItemProductBinding
 
 class ProductAdapter(
     private val products: List<Product>,
-    private val onAdd: (Product) -> Unit
+    private val onAdd: (Product) -> Unit,
+    private val onItemClick: (Product) -> Unit
 ) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
     class ViewHolder(val binding: ItemProductBinding) : RecyclerView.ViewHolder(binding.root)
@@ -25,5 +26,6 @@ class ProductAdapter(
         holder.binding.tvProductDescription.text = product.description
         holder.binding.tvProductPrice.text = product.price.toCop()
         holder.binding.btnAdd.setOnClickListener { onAdd(product) }
+        holder.binding.root.setOnClickListener { onItemClick(product) }
     }
 }

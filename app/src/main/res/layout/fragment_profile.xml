@@ -31,6 +31,7 @@
             </FrameLayout>
 
             <TextView
+                android:id="@+id/tvProfileName"
                 style="@style/Text.Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -39,6 +40,7 @@
                 android:textColor="@color/text_on_dark" />
 
             <TextView
+                android:id="@+id/tvRole"
                 style="@style/Text.Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -8,6 +8,7 @@ import com.castro.solopan.R
 import com.castro.solopan.data.CartManager
 import com.castro.solopan.data.SampleData
 import com.castro.solopan.databinding.ActivityBakeryBinding
+import android.content.Intent
 
 class BakeryActivity : AppCompatActivity() {
 
@@ -24,10 +25,19 @@ class BakeryActivity : AppCompatActivity() {
 
         val products = SampleData.products.filter { it.bakeryName == bakeryName }
         binding.rvProducts.layoutManager = LinearLayoutManager(this)
-        binding.rvProducts.adapter = ProductAdapter(products) { product ->
-            CartManager.add(product)
-            Toast.makeText(this, R.string.msg_added_to_cart, Toast.LENGTH_SHORT).show()
-        }
+        binding.rvProducts.adapter = ProductAdapter(
+            products,
+            onAdd = { product ->
+                CartManager.add(product)
+                Toast.makeText(this, R.string.msg_added_to_cart, Toast.LENGTH_SHORT).show()
+            },
+            onItemClick = { product ->
+                startActivity(
+                    Intent(this, ProductDetailActivity::class.java)
+                        .putExtra(ProductDetailActivity.EXTRA_ID, product.id)
+                )
+            }
+        )
     }
 
     companion object {

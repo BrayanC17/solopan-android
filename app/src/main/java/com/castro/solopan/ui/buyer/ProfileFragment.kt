@@ -25,6 +25,12 @@ class ProfileFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        arguments?.getString(ARG_ROLE)?.let { binding.tvRole.text = it }
+        arguments?.getString(ARG_NAME)?.let {
+            binding.tvProfileName.text = it
+            binding.etName.setText(it)
+        }
+
         binding.btnSave.setOnClickListener {
             Toast.makeText(requireContext(), R.string.msg_saved, Toast.LENGTH_SHORT).show()
         }
@@ -48,5 +54,10 @@ class ProfileFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        const val ARG_ROLE = "arg_role"
+        const val ARG_NAME = "arg_name"
     }
 }

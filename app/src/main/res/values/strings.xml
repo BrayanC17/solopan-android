@@ -91,4 +91,59 @@
     <string name="dialog_delete_message">Esta acción no se puede deshacer. ¿Deseas continuar?</string>
     <string name="dialog_confirm">Eliminar</string>
     <string name="dialog_cancel">Cancelar</string>
+
+    <!-- Detalle y pago -->
+    <string name="detail_title">Detalle del producto</string>
+    <string name="detail_ingredients">Ingredientes</string>
+    <string name="detail_allergens">Alérgenos</string>
+    <string name="detail_stock">Disponibles: %1$d</string>
+    <string name="btn_add_cart">Agregar al carrito</string>
+    <string name="pay_title">Pago</string>
+    <string name="pay_summary">Resumen del pedido</string>
+    <string name="pay_method">Método de pago</string>
+    <string name="pay_card">Tarjeta crédito o débito</string>
+    <string name="pay_pse">PSE (transferencia bancaria)</string>
+    <string name="pay_nequi">Nequi</string>
+    <string name="hint_card_number">Número de tarjeta</string>
+    <string name="hint_expiry">MM/AA</string>
+    <string name="hint_cvv">CVV</string>
+    <string name="pay_secure">Pago seguro procesado por la pasarela. Solopan no guarda los datos de tu tarjeta.</string>
+    <string name="btn_pay">Pagar %1$s</string>
+    <string name="error_card">Ingresa los 16 dígitos de la tarjeta</string>
+    <string name="error_expiry">Usa el formato MM/AA</string>
+    <string name="error_cvv">CVV de 3 dígitos</string>
+    <string name="pay_success_title">Pago aprobado</string>
+    <string name="pay_success_message">Referencia: %1$s\nTu pedido fue enviado a la panadería.</string>
+    <string name="dialog_ok">Aceptar</string>
+
+    <!-- Vendedor -->
+    <string name="nav_orders">Pedidos</string>
+    <string name="nav_products">Productos</string>
+    <string name="nav_billing">Facturación</string>
+    <string name="seller_name">Panadería La Espiga</string>
+    <string name="role_seller">Vendedor</string>
+    <string name="orders_today">Pedidos hoy</string>
+    <string name="sales_today">Ventas hoy</string>
+    <string name="recent_orders">Pedidos recientes</string>
+    <string name="btn_advance">Avanzar estado</string>
+    <string name="my_products">Mis productos</string>
+    <string name="btn_new">+ Nuevo</string>
+    <string name="cd_edit">Editar producto</string>
+    <string name="stock_label">Stock %1$d</string>
+    <string name="product_form_title">Producto</string>
+    <string name="hint_product_name">Nombre del producto</string>
+    <string name="hint_description">Descripción</string>
+    <string name="hint_price">Precio (COP, con IVA)</string>
+    <string name="hint_stock">Stock</string>
+    <string name="label_available">Producto disponible</string>
+    <string name="btn_take_photo">Tomar foto</string>
+    <string name="btn_cancel">Cancelar</string>
+    <string name="btn_save_product">Guardar producto</string>
+    <string name="msg_product_saved">Producto guardado</string>
+    <string name="msg_photo_soon">La foto se guardará en almacenamiento externo</string>
+    <string name="dialog_delete_product_title">Eliminar producto</string>
+    <string name="dialog_delete_product_message">¿Quitar este producto de tu catálogo?</string>
+    <string name="billing_title">Facturación</string>
+    <string name="billed_month">Facturado en octubre</string>
+    <string name="invoices_recent">Facturas recientes</string>
 </resources>

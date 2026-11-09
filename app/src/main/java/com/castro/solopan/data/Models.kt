@@ -11,7 +11,9 @@ data class Product(
     val name: String,
     val description: String,
     val price: Int,
-    val stock: Int
+    val stock: Int,
+    val ingredients: String = "Harina, mantequilla, huevo, azúcar, sal",
+    val allergens: String = "Gluten, lácteos, huevo"
 )
 
 data class CartItem(val product: Product, var quantity: Int)
@@ -55,6 +57,39 @@ object CartManager {
     }
 
     fun remove(id: Int) { items.remove(id) }
+    fun clear() { items.clear() }
     fun items(): List<CartItem> = items.values.toList()
     fun subtotal(): Int = items.values.sumOf { it.product.price * it.quantity }
+}
+
+data class Order(val id: Int, val type: String, val summary: String, val total: Int, var status: String)
+data class Invoice(val number: String, val detail: String, val total: Int)
+
+object SellerStore {
+    const val BAKERY = "Panadería La Espiga"
+    val statuses = listOf("Nuevo", "En preparación", "Listo", "Entregado")
+
+    val products = SampleData.products.filter { it.bakeryName == BAKERY }.toMutableList()
+
+    val orders = mutableListOf(
+        Order(1042, "Domicilio", "2 croissants, 1 roscón · Cra 15 #93-20", 15800, "Nuevo"),
+        Order(1041, "Recoger", "3 panes integrales", 26700, "En preparación"),
+        Order(1040, "Domicilio", "1 torta de chocolate", 10200, "Entregado")
+    )
+
+    val invoices = listOf(
+        Invoice("FE-1042", "13 oct 2026 · María F. Rojas", 15800),
+        Invoice("FE-1041", "13 oct 2026 · Carlos Peña", 26700),
+        Invoice("FE-1040", "12 oct 2026 · Laura Gómez", 10200)
+    )
+
+    fun find(id: Int) = products.firstOrNull { it.id == id }
+    fun nextId() = (products.maxOfOrNull { it.id } ?: 0) + 100
+
+    fun upsert(product: Product) {
+        val index = products.indexOfFirst { it.id == product.id }
+        if (index >= 0) products[index] = product else products.add(product)
+    }
+
+    fun delete(id: Int) { products.removeAll { it.id == id } }
 }
