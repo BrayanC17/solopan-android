@@ -19,4 +19,9 @@
     <dimen name="text_subtitle">18sp</dimen>
     <dimen name="text_body">14sp</dimen>
     <dimen name="text_caption">12sp</dimen>
+
+    
+    <dimen name="logo_size">72dp</dimen>
+    <dimen name="logo_icon_size">40dp</dimen>
+    <dimen name="topbar_height">56dp</dimen>
 </resources>

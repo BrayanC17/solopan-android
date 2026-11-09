@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/topbar_height"
+        android:background="@color/brown_dark"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/spacing_s">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/cd_back"
+            android:src="@drawable/ic_arrow_back" />
+
+        <TextView
+            style="@style/Text.Subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/register_title"
+            android:textColor="@color/text_on_dark" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_l">
+
+            <TextView
+                style="@style/Text.Subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/register_role_label" />
+
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/toggleRole"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_s"
+                app:checkedButton="@id/btnRoleBuyer"
+                app:selectionRequired="true"
+                app:singleSelection="true">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnRoleBuyer"
+                    style="@style/Widget.Solopan.Button.Outlined"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/role_buyer" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnRoleBakery"
+                    style="@style/Widget.Solopan.Button.Outlined"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/role_bakery" />
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
+            <EditText
+                android:id="@+id/etName"
+                style="@style/Widget.Solopan.Input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_m"
+                android:autofillHints="name"
+                android:hint="@string/hint_full_name"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/etEmail"
+                style="@style/Widget.Solopan.Input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_s"
+                android:autofillHints="emailAddress"
+                android:hint="@string/hint_email"
+                android:inputType="textEmailAddress" />
+
+            <EditText
+                android:id="@+id/etPhone"
+                style="@style/Widget.Solopan.Input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_s"
+                android:autofillHints="phone"
+                android:hint="@string/hint_phone"
+                android:inputType="phone" />
+
+            <EditText
+                android:id="@+id/etPassword"
+                style="@style/Widget.Solopan.Input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_s"
+                android:autofillHints="newPassword"
+                android:hint="@string/placeholder_password"
+                android:inputType="textPassword" />
+
+            <LinearLayout
+                android:id="@+id/layoutSeller"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/etBakeryName"
+                    style="@style/Widget.Solopan.Input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_s"
+                    android:autofillHints="organizationName"
+                    android:hint="@string/hint_bakery_name"
+                    android:inputType="text" />
+
+                <EditText
+                    android:id="@+id/etNit"
+                    style="@style/Widget.Solopan.Input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_s"
+                    android:autofillHints="none"
+                    android:hint="@string/hint_nit"
+                    android:inputType="text" />
+
+                <EditText
+                    android:id="@+id/etSchedule"
+                    style="@style/Widget.Solopan.Input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_s"
+                    android:autofillHints="none"
+                    android:hint="@string/hint_schedule"
+                    android:inputType="text" />
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/cbTerms"
+                style="@style/Text.Caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_m"
+                android:buttonTint="@color/red_primary"
+                android:text="@string/terms_text" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCreate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_l"
+                android:text="@string/register_title" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Text.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/register_have_account" />
+
+                <TextView
+                    android:id="@+id/tvLogin"
+                    style="@style/Text.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/spacing_xs"
+                    android:text="@string/link_login"
+                    android:textColor="@color/red_primary"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

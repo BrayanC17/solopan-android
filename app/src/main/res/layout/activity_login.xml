@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_header_brown"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/spacing_xl"
+            android:paddingBottom="@dimen/spacing_xl">
+
+            <FrameLayout
+                android:layout_width="@dimen/logo_size"
+                android:layout_height="@dimen/logo_size"
+                android:background="@drawable/bg_logo_circle">
+
+                <ImageView
+                    android:layout_width="@dimen/logo_icon_size"
+                    android:layout_height="@dimen/logo_icon_size"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/cd_logo"
+                    android:src="@drawable/ic_bakery" />
+            </FrameLayout>
+
+            <TextView
+                style="@style/Text.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_s"
+                android:text="@string/app_name"
+                android:textColor="@color/text_on_dark" />
+
+            <TextView
+                style="@style/Text.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_slogan"
+                android:textColor="@color/caramel" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_l">
+
+            <TextView
+                style="@style/Text.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/login_welcome" />
+
+            <TextView
+                style="@style/Text.Subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_m"
+                android:text="@string/hint_email" />
+
+            <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/input_height"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:autofillHints="emailAddress"
+                android:background="@drawable/bg_input"
+                android:hint="@string/placeholder_email"
+                android:inputType="textEmailAddress"
+                android:paddingHorizontal="@dimen/spacing_m"
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_secondary"
+                android:textSize="@dimen/text_body" />
+
+            <TextView
+                style="@style/Text.Subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_m"
+                android:text="@string/hint_password" />
+
+            <EditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/input_height"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:autofillHints="password"
+                android:background="@drawable/bg_input"
+                android:hint="@string/placeholder_password"
+                android:inputType="textPassword"
+                android:paddingHorizontal="@dimen/spacing_m"
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_secondary"
+                android:textSize="@dimen/text_body" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_l"
+                android:text="@string/btn_login" />
+
+            <TextView
+                style="@style/Text.Caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/spacing_m"
+                android:gravity="center"
+                android:text="@string/login_or_continue" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnBiometric"
+                style="@style/Widget.Solopan.Button.Outlined"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_biometric"
+                app:icon="@drawable/ic_fingerprint"
+                app:iconGravity="textStart"
+                app:iconTint="@color/brown_dark"
+                xmlns:app="http://schemas.android.com/apk/res-auto" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnGoogle"
+                style="@style/Widget.Solopan.Button.Outlined"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_s"
+                android:text="@string/btn_google"
+                app:icon="@drawable/ic_person"
+                app:iconGravity="textStart"
+                app:iconTint="@color/brown_dark"
+                xmlns:app="http://schemas.android.com/apk/res-auto" />
+
+            <TextView
+                android:id="@+id/tvForgotPassword"
+                style="@style/Text.Caption"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="@dimen/spacing_s"
+                android:gravity="center"
+                android:text="@string/link_forgot_password"
+                android:textColor="@color/red_primary"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Text.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/login_new_user" />
+
+                <TextView
+                    android:id="@+id/tvCreateAccount"
+                    style="@style/Text.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/spacing_xs"
+                    android:text="@string/link_create_account"
+                    android:textColor="@color/red_primary"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

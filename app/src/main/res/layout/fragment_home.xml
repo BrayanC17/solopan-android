@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_header_brown"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_l">
+
+        <TextView
+            style="@style/Text.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/deliver_to"
+            android:textColor="@color/caramel" />
+
+        <TextView
+            style="@style/Text.Subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/current_address"
+            android:textColor="@color/text_on_dark" />
+
+        <EditText
+            android:id="@+id/etSearch"
+            style="@style/Widget.Solopan.Input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_m"
+            android:autofillHints="none"
+            android:hint="@string/hint_search"
+            android:inputType="text" />
+    </LinearLayout>
+
+    <TextView
+        style="@style/Text.Subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_m"
+        android:text="@string/nearby_bakeries" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvBakeries"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingHorizontal="@dimen/spacing_m" />
+</LinearLayout>

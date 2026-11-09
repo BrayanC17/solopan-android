@@ -15,4 +15,80 @@
     <string name="link_forgot_password">¿Olvidaste tu contraseña?</string>
     <string name="login_new_user">¿Eres nuevo?</string>
     <string name="link_create_account">Crear cuenta</string>
+    <string name="biometric_title">Ingreso con huella</string>
+    <string name="biometric_subtitle">Confirma tu identidad para entrar a Solopan</string>
+    <string name="biometric_cancel">Usar contraseña</string>
+    <string name="error_email_invalid">Ingresa un correo válido</string>
+    <string name="error_password_short">La contraseña debe tener mínimo 8 caracteres</string>
+    <string name="msg_google_soon">Inicio con Google disponible próximamente</string>
+    <string name="msg_register_soon">El registro se implementa en la siguiente pantalla</string>
+    <string name="msg_recover_soon">La recuperación se implementa en la siguiente pantalla</string>
+    <string name="cd_logo">Logo de Solopan</string>
+    <!-- Navegación -->
+    <string name="nav_home">Inicio</string>
+    <string name="nav_cart">Carrito</string>
+    <string name="nav_profile">Perfil</string>
+    <string name="cd_back">Volver</string>
+
+    <!-- Registro -->
+    <string name="register_title">Crear cuenta</string>
+    <string name="register_role_label">Quiero registrarme como</string>
+    <string name="role_buyer">Comprador</string>
+    <string name="role_bakery">Panadería</string>
+    <string name="hint_full_name">Nombre y apellido</string>
+    <string name="hint_phone">Celular</string>
+    <string name="hint_bakery_name">Nombre de la panadería</string>
+    <string name="hint_nit">NIT</string>
+    <string name="hint_schedule">Horario de atención</string>
+    <string name="terms_text">Autorizo el tratamiento de mis datos personales según la Ley 1581 de 2012 y acepto los términos y condiciones.</string>
+    <string name="register_have_account">¿Ya tienes cuenta?</string>
+    <string name="link_login">Inicia sesión</string>
+    <string name="error_required">Este campo es obligatorio</string>
+    <string name="error_phone_invalid">Ingresa un celular de 10 dígitos</string>
+    <string name="error_password_format">Mínimo 8 caracteres con letras y números</string>
+    <string name="error_terms">Debes aceptar el tratamiento de datos</string>
+    <string name="msg_account_created">Cuenta creada. Inicia sesión para continuar</string>
+
+    <!-- Recuperar -->
+    <string name="recover_title">Recuperar contraseña</string>
+    <string name="recover_description">Escribe tu correo y te enviaremos un enlace para restablecer tu contraseña. El enlace expira en 2 horas.</string>
+    <string name="btn_send_link">Enviar enlace</string>
+    <string name="msg_recover_sent">Si el correo está registrado, recibirás un enlace en unos minutos</string>
+
+    <!-- Inicio comprador -->
+    <string name="deliver_to">Entregar en</string>
+    <string name="current_address">Cra 15 #93-20, Bogotá</string>
+    <string name="hint_search">Buscar pan, pastel, panadería</string>
+    <string name="nearby_bakeries">Panaderías cerca</string>
+    <string name="msg_added_to_cart">Agregado al carrito</string>
+    <string name="cd_add_product">Agregar al carrito</string>
+
+    <!-- Carrito -->
+    <string name="cart_title">Mi carrito</string>
+    <string name="cart_empty">Tu carrito está vacío. Agrega productos desde el inicio.</string>
+    <string name="delivery_home">Domicilio</string>
+    <string name="delivery_pickup">Recoger en tienda</string>
+    <string name="label_subtotal">Subtotal</string>
+    <string name="label_delivery">Domicilio</string>
+    <string name="label_total">Total (IVA incluido)</string>
+    <string name="btn_checkout">Ir a pagar</string>
+    <string name="msg_payment_soon">El pago se implementa en la siguiente pantalla</string>
+    <string name="cd_remove">Quitar producto</string>
+    <string name="cd_decrease">Disminuir cantidad</string>
+    <string name="cd_increase">Aumentar cantidad</string>
+
+    <!-- Perfil -->
+    <string name="profile_name">María Fernanda Rojas</string>
+    <string name="profile_email">mfernanda@correo.com</string>
+    <string name="profile_phone">300 123 4567</string>
+    <string name="profile_biometric">Ingreso con huella</string>
+    <string name="profile_biometric_hint">Tu huella nunca sale del teléfono</string>
+    <string name="btn_save_changes">Guardar cambios</string>
+    <string name="btn_logout">Cerrar sesión</string>
+    <string name="btn_delete_account">Eliminar cuenta</string>
+    <string name="msg_saved">Cambios guardados</string>
+    <string name="dialog_delete_title">Eliminar cuenta</string>
+    <string name="dialog_delete_message">Esta acción no se puede deshacer. ¿Deseas continuar?</string>
+    <string name="dialog_confirm">Eliminar</string>
+    <string name="dialog_cancel">Cancelar</string>
 </resources>
