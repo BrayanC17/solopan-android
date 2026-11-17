@@ -9,12 +9,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import com.castro.solopan.R
+import com.castro.solopan.data.UserProfile
+import com.castro.solopan.data.UserRepository
 import com.castro.solopan.databinding.ActivityLoginBinding
-import com.castro.solopan.ui.admin.AdminActivity
-import com.castro.solopan.ui.buyer.BuyerActivity
-import com.castro.solopan.ui.seller.SellerActivity
+import kotlinx.coroutines.launch
 
+/**
+ * Pantalla de inicio de sesión. Soporta correo y contraseña (Firebase Authentication)
+ * y huella dactilar, que reutiliza la sesión que Firebase conserva en el dispositivo.
+ */
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
@@ -36,6 +41,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    /** Valida el formato de los campos y, si es correcto, autentica contra Firebase. */
     private fun validateAndLogin() {
         val email = binding.etEmail.text.toString().trim()
         val password = binding.etPassword.text.toString()
@@ -48,25 +54,37 @@ class LoginActivity : AppCompatActivity() {
             binding.etPassword.error = getString(R.string.error_password_short)
             return
         }
-        goToHome()
+
+        setLoading(true)
+        lifecycleScope.launch {
+            try {
+                openHome(UserRepository.login(email, password))
+            } catch (e: Exception) {
+                showMessage(RoleRouter.messageFor(e))
+            } finally {
+                setLoading(false)
+            }
+        }
     }
 
+    /**
+     * Configura el botón de huella. Solo aparece si el dispositivo tiene sensor con huella
+     * registrada Y ya existe una sesión guardada por un inicio de sesión previo con contraseña.
+     */
     private fun setupBiometric() {
         val canAuthenticate = BiometricManager.from(this)
             .canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG)
+        val available = canAuthenticate == BiometricManager.BIOMETRIC_SUCCESS
 
-        if (canAuthenticate != BiometricManager.BIOMETRIC_SUCCESS) {
+        if (!available) {
             binding.btnBiometric.visibility = View.GONE
             return
         }
 
-        val executor = ContextCompat.getMainExecutor(this)
-        val prompt = BiometricPrompt(this, executor,
+        val prompt = BiometricPrompt(this, ContextCompat.getMainExecutor(this),
             object : BiometricPrompt.AuthenticationCallback() {
-                override fun onAuthenticationSucceeded(
-                    result: BiometricPrompt.AuthenticationResult
-                ) {
-                    goToHome()
+                override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+                    enterWithExistingSession()
                 }
             })
 
@@ -77,18 +95,40 @@ class LoginActivity : AppCompatActivity() {
             .setAllowedAuthenticators(BiometricManager.Authenticators.BIOMETRIC_STRONG)
             .build()
 
-        binding.btnBiometric.setOnClickListener { prompt.authenticate(promptInfo) }
+        binding.btnBiometric.setOnClickListener {
+            if (UserRepository.hasSession()) {
+                prompt.authenticate(promptInfo)
+            } else {
+                showMessage(R.string.msg_biometric_needs_session)
+            }
+        }
     }
 
-    private fun goToHome() {
-        val email = binding.etEmail.text.toString().lowercase()
-        val destination = when {
-            email.contains("admin") -> AdminActivity::class.java
-            email.contains("vendedor") -> SellerActivity::class.java
-            else -> BuyerActivity::class.java
+    /** Tras validar la huella, entra con la sesión de Firebase y lee el rol. */
+    private fun enterWithExistingSession() {
+        lifecycleScope.launch {
+            try {
+                openHome(UserRepository.fetchCurrent())
+            } catch (e: Exception) {
+                showMessage(RoleRouter.messageFor(e))
+            }
         }
-        startActivity(Intent(this, destination))
+    }
+
+    /** Abre el módulo del rol; si la cuenta está suspendida cierra la sesión y avisa. */
+    private fun openHome(profile: UserProfile) {
+        if (!profile.active) {
+            UserRepository.logout()
+            showMessage(R.string.msg_user_inactive)
+            return
+        }
+        startActivity(RoleRouter.homeIntent(this, profile.role))
         finish()
+    }
+
+    /** Evita pulsaciones repetidas mientras se espera la respuesta del servidor. */
+    private fun setLoading(loading: Boolean) {
+        binding.btnLogin.isEnabled = !loading
     }
 
     private fun showMessage(messageRes: Int) {

@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -53,6 +54,14 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     implementation("androidx.cardview:cardview:1.0.0")
+    implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-firestore")
+
+    // Para usar await() con las tareas de Firebase en corrutinas
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.8.1")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

@@ -2,12 +2,15 @@ package com.castro.solopan.ui.seller
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.castro.solopan.R
 import com.castro.solopan.databinding.ActivitySellerBinding
 import com.castro.solopan.ui.buyer.ProfileFragment
 
+/**
+ * Contenedor del módulo Vendedor: muestra el menú inferior y cambia entre
+ * pedidos, productos, facturación y perfil.
+ */
 class SellerActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySellerBinding
@@ -21,7 +24,7 @@ class SellerActivity : AppCompatActivity() {
             val fragment: Fragment = when (item.itemId) {
                 R.id.nav_products -> SellerProductsFragment()
                 R.id.nav_billing -> BillingFragment()
-                R.id.nav_profile -> buildProfileFragment()
+                R.id.nav_profile -> ProfileFragment()
                 else -> SellerOrdersFragment()
             }
             supportFragmentManager.beginTransaction()
@@ -30,16 +33,5 @@ class SellerActivity : AppCompatActivity() {
             true
         }
         if (savedInstanceState == null) binding.bottomNav.selectedItemId = R.id.nav_orders
-    }
-
-    private fun buildProfileFragment(): Fragment {
-        val role = getString(R.string.role_seller)
-        val name = getString(R.string.seller_name)
-        return ProfileFragment().apply {
-            arguments = bundleOf(
-                ProfileFragment.ARG_ROLE to role,
-                ProfileFragment.ARG_NAME to name
-            )
-        }
     }
 }

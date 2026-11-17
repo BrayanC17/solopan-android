@@ -21,8 +21,6 @@
     <string name="error_email_invalid">Ingresa un correo válido</string>
     <string name="error_password_short">La contraseña debe tener mínimo 8 caracteres</string>
     <string name="msg_google_soon">Inicio con Google disponible próximamente</string>
-    <string name="msg_register_soon">El registro se implementa en la siguiente pantalla</string>
-    <string name="msg_recover_soon">La recuperación se implementa en la siguiente pantalla</string>
     <string name="cd_logo">Logo de Solopan</string>
     <!-- Navegación -->
     <string name="nav_home">Inicio</string>
@@ -72,7 +70,6 @@
     <string name="label_delivery">Domicilio</string>
     <string name="label_total">Total (IVA incluido)</string>
     <string name="btn_checkout">Ir a pagar</string>
-    <string name="msg_payment_soon">El pago se implementa en la siguiente pantalla</string>
     <string name="cd_remove">Quitar producto</string>
     <string name="cd_decrease">Disminuir cantidad</string>
     <string name="cd_increase">Aumentar cantidad</string>
@@ -143,7 +140,6 @@
     <string name="msg_photo_soon">La foto se guardará en almacenamiento externo</string>
     <string name="dialog_delete_product_title">Eliminar producto</string>
     <string name="dialog_delete_product_message">¿Quitar este producto de tu catálogo?</string>
-    <string name="billing_title">Facturación</string>
     <string name="billed_month">Facturado en octubre</string>
     <string name="invoices_recent">Facturas recientes</string>
 
@@ -190,4 +186,12 @@
     <string name="btn_sales_report">Ver reporte de ventas</string>
     <string name="status_active">Activo</string>
     <string name="status_suspended">Suspendido</string>
+    <string name="msg_login_error">Correo o contraseña incorrectos</string>
+    <string name="msg_user_inactive">Tu cuenta está suspendida. Contacta al administrador</string>
+    <string name="msg_network">Sin conexión. Revisa tu internet e intenta de nuevo</string>
+    <string name="msg_no_profile">No se encontró el perfil de tu cuenta</string>
+    <string name="msg_generic_error">Ocurrió un error. Intenta de nuevo</string>
+    <string name="msg_email_in_use">Ese correo ya está registrado</string>
+    <string name="msg_biometric_needs_session">Inicia sesión con tu contraseña una vez para activar la huella</string>
+    <string name="role_admin">Administrador</string>
 </resources>

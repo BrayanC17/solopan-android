@@ -12,7 +12,6 @@
 
     <dimen name="button_height">52dp</dimen>
     <dimen name="input_height">52dp</dimen>
-    <dimen name="icon_size">24dp</dimen>
     <dimen name="product_image_size">64dp</dimen>
 
     <dimen name="text_title">24sp</dimen>

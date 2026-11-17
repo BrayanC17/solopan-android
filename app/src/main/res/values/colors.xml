@@ -5,7 +5,6 @@
     <color name="brown_medium">#8B5A2B</color>
     <color name="caramel">#C98B4B</color>
     <color name="red_primary">#C63B2F</color>
-    <color name="red_dark">#9E2D24</color>
 
     <!-- Fondos y superficies -->
     <color name="cream_background">#F5EBDD</color>
@@ -19,7 +18,6 @@
 
     <!-- Estados -->
     <color name="success_green">#2E7D4F</color>
-    <color name="success_container">#D8EBDD</color>
     <color name="warning_container">#F3E0B8</color>
     <color name="error_red">#B3261E</color>
 
