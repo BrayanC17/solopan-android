@@ -194,4 +194,7 @@
     <string name="msg_email_in_use">Ese correo ya está registrado</string>
     <string name="msg_biometric_needs_session">Inicia sesión con tu contraseña una vez para activar la huella</string>
     <string name="role_admin">Administrador</string>
+    <string name="msg_user_deleted">Usuario eliminado</string>
+    <string name="msg_users_error">No se pudieron cargar los usuarios</string>
+    <string name="hint_new_password">Contraseña inicial (mín. 8, letras y números)</string>
 </resources>

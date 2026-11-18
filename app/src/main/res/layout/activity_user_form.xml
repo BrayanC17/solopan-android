@@ -59,6 +59,16 @@
                 android:hint="@string/hint_email"
                 android:inputType="textEmailAddress" />
 
+            <EditText
+                android:id="@+id/etPassword"
+                style="@style/Widget.Solopan.Input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_s"
+                android:autofillHints="newPassword"
+                android:hint="@string/hint_new_password"
+                android:inputType="textPassword" />
+
             <com.google.android.material.button.MaterialButtonToggleGroup
                 android:id="@+id/toggleRole"
                 android:layout_width="match_parent"
@@ -82,7 +92,15 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/role_bakery" />
+                    android:text="@string/role_seller" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnRoleAdmin"
+                    style="@style/Widget.Solopan.Button.Outlined"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/role_admin" />
             </com.google.android.material.button.MaterialButtonToggleGroup>
 
             <LinearLayout
