@@ -3,60 +3,67 @@ package com.castro.solopan.data
 import java.text.NumberFormat
 import java.util.Locale
 
-data class Bakery(val name: String, val info: String, val hours: String)
+/** Panadería visible para el Comprador (viene de un usuario con rol vendedor). */
+data class Bakery(val uid: String, val name: String, val owner: String, val hours: String)
 
+/**
+ * Producto guardado en Firestore (colección "products").
+ * Todos los campos tienen valor por defecto para que Firestore pueda crear el objeto.
+ * La imagen se guarda como texto Base64 (JPEG reducido).
+ */
 data class Product(
-    val id: Int,
-    val bakeryName: String,
-    val name: String,
-    val description: String,
-    val price: Int,
-    val stock: Int,
-    val ingredients: String = "Harina, mantequilla, huevo, azúcar, sal",
-    val allergens: String = "Gluten, lácteos, huevo"
-)
-
-data class CartItem(val product: Product, var quantity: Int)
-
-fun Int.toCop(): String =
-    "\$ " + NumberFormat.getIntegerInstance(Locale.forLanguageTag("es-CO")).format(this)
-
-object SampleData {
-    val bakeries = listOf(
-        Bakery("Panadería La Espiga", "Pan, pasteles · 0,8 km · 20 min", "Abierto hasta 8:00 p. m."),
-        Bakery("Pan de Barrio", "Croissants, almojábanas · 1,4 km", "Abierto hasta 7:00 p. m."),
-        Bakery("Horno Dorado", "Tortas, roscones · 2,1 km", "Abierto hasta 6:30 p. m.")
-    )
-
-    val products = listOf(
-        Product(1, "Panadería La Espiga", "Croissant de mantequilla", "Hojaldrado, horneado hoy", 4500, 24),
-        Product(2, "Panadería La Espiga", "Pan integral", "Con semillas, 500 g", 8900, 12),
-        Product(3, "Panadería La Espiga", "Roscón de guayaba", "Relleno dulce, unidad", 3800, 10),
-        Product(4, "Panadería La Espiga", "Torta de chocolate", "Porción individual", 7200, 8),
-        Product(5, "Pan de Barrio", "Almojábana x6", "Queso fresco, horneadas hoy", 9600, 15),
-        Product(6, "Pan de Barrio", "Pan de bono", "Unidad, calientico", 2800, 30),
-        Product(7, "Horno Dorado", "Torta de zanahoria", "Porción con crema", 8500, 9),
-        Product(8, "Horno Dorado", "Roscón de arequipe", "Relleno de arequipe", 3500, 14)
+    val id: String = "",
+    val ownerUid: String = "",
+    val bakeryName: String = "",
+    val name: String = "",
+    val description: String = "",
+    val price: Int = 0,
+    val stock: Int = 0,
+    val ingredients: String = "",
+    val allergens: String = "",
+    val imageBase64: String = "",
+    val active: Boolean = true
+) {
+    /** Convierte el producto a un mapa para escribirlo en Firestore. */
+    fun toMap(): Map<String, Any> = mapOf(
+        "ownerUid" to ownerUid,
+        "bakeryName" to bakeryName,
+        "name" to name,
+        "description" to description,
+        "price" to price,
+        "stock" to stock,
+        "ingredients" to ingredients,
+        "allergens" to allergens,
+        "imageBase64" to imageBase64,
+        "active" to active
     )
 }
 
+data class CartItem(val product: Product, var quantity: Int)
+
+/** Da formato de pesos colombianos: 4500 -> "$ 4.500". */
+fun Int.toCop(): String =
+    "\$ " + NumberFormat.getIntegerInstance(Locale.forLanguageTag("es-CO")).format(this)
+
+/** Carrito en memoria. La clave es el id del producto en Firestore. */
 object CartManager {
-    private val items = linkedMapOf<Int, CartItem>()
+    private val items = linkedMapOf<String, CartItem>()
 
     fun add(product: Product) {
         val current = items[product.id]
-        if (current == null) items[product.id] = CartItem(product, 1) else current.quantity++
+        if (current == null) items[product.id] = CartItem(product, 1)
+        else if (current.quantity < product.stock) current.quantity++
     }
 
-    fun increase(id: Int) {
+    fun increase(id: String) {
         items[id]?.let { if (it.quantity < it.product.stock) it.quantity++ }
     }
 
-    fun decrease(id: Int) {
+    fun decrease(id: String) {
         items[id]?.let { if (it.quantity > 1) it.quantity-- else items.remove(id) }
     }
 
-    fun remove(id: Int) { items.remove(id) }
+    fun remove(id: String) { items.remove(id) }
     fun clear() { items.clear() }
     fun items(): List<CartItem> = items.values.toList()
     fun subtotal(): Int = items.values.sumOf { it.product.price * it.quantity }
@@ -65,11 +72,9 @@ object CartManager {
 data class Order(val id: Int, val type: String, val summary: String, val total: Int, var status: String)
 data class Invoice(val number: String, val detail: String, val total: Int)
 
+/** Pedidos y facturas de ejemplo del Vendedor (se reemplazan al implementar las órdenes). */
 object SellerStore {
-    const val BAKERY = "Panadería La Espiga"
     val statuses = listOf("Nuevo", "En preparación", "Listo", "Entregado")
-
-    val products = SampleData.products.filter { it.bakeryName == BAKERY }.toMutableList()
 
     val orders = mutableListOf(
         Order(1042, "Domicilio", "2 croissants, 1 roscón · Cra 15 #93-20", 15800, "Nuevo"),
@@ -82,16 +87,6 @@ object SellerStore {
         Invoice("FE-1041", "13 oct 2026 · Carlos Peña", 26700),
         Invoice("FE-1040", "12 oct 2026 · Laura Gómez", 10200)
     )
-
-    fun find(id: Int) = products.firstOrNull { it.id == id }
-    fun nextId() = (products.maxOfOrNull { it.id } ?: 0) + 100
-
-    fun upsert(product: Product) {
-        val index = products.indexOfFirst { it.id == product.id }
-        if (index >= 0) products[index] = product else products.add(product)
-    }
-
-    fun delete(id: Int) { products.removeAll { it.id == id } }
 }
 
 data class AppUser(
@@ -120,6 +115,7 @@ data class ReportedProduct(
     var hidden: Boolean
 )
 
+/** Datos de ejemplo del Administrador (PQR, reportes y solicitudes) hasta implementarlos en Firestore. */
 object AdminStore {
     val users = mutableListOf(
         AppUser(1, "María Fernanda Rojas", "mfernanda@correo.com", "Comprador", true),
@@ -149,14 +145,4 @@ object AdminStore {
         SalesRow("Pan de Barrio", 2310000),
         SalesRow("Horno Dorado", 1745200)
     )
-
-    fun findUser(id: Int) = users.firstOrNull { it.id == id }
-    fun nextUserId() = (users.maxOfOrNull { it.id } ?: 0) + 1
-
-    fun upsert(user: AppUser) {
-        val index = users.indexOfFirst { it.id == user.id }
-        if (index >= 0) users[index] = user else users.add(user)
-    }
-
-    fun deleteUser(id: Int) { users.removeAll { it.id == id } }
 }

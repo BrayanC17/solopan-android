@@ -39,11 +39,35 @@
             android:orientation="vertical"
             android:padding="@dimen/spacing_l">
 
+            <FrameLayout
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/bg_logo_circle"
+                android:clipToOutline="true">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/cd_logo"
+                    android:src="@drawable/ic_bakery" />
+
+                <ImageView
+                    android:id="@+id/ivPhoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/btn_take_photo"
+                    android:scaleType="centerCrop"
+                    android:visibility="gone" />
+            </FrameLayout>
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnPhoto"
                 style="@style/Widget.Solopan.Button.Outlined"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_m"
                 android:text="@string/btn_take_photo" />
 
             <EditText
@@ -64,6 +88,26 @@
                 android:layout_marginTop="@dimen/spacing_s"
                 android:autofillHints="none"
                 android:hint="@string/hint_description"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/etIngredients"
+                style="@style/Widget.Solopan.Input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_s"
+                android:autofillHints="none"
+                android:hint="@string/hint_ingredients"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/etAllergens"
+                style="@style/Widget.Solopan.Input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_s"
+                android:autofillHints="none"
+                android:hint="@string/hint_allergens"
                 android:inputType="text" />
 
             <LinearLayout

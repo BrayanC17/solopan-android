@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.castro.solopan.data.Product
 import com.castro.solopan.data.toCop
 import com.castro.solopan.databinding.ItemProductBinding
+import com.castro.solopan.util.ImageUtils
 
+/** Lista de productos de una panadería: foto, precio, botón de agregar y detalle al tocar. */
 class ProductAdapter(
     private val products: List<Product>,
     private val onAdd: (Product) -> Unit,
@@ -25,6 +27,9 @@ class ProductAdapter(
         holder.binding.tvProductName.text = product.name
         holder.binding.tvProductDescription.text = product.description
         holder.binding.tvProductPrice.text = product.price.toCop()
+        ImageUtils.show(holder.binding.ivPhoto, product.imageBase64)
+        // Sin stock no se puede agregar al carrito
+        holder.binding.btnAdd.isEnabled = product.stock > 0
         holder.binding.btnAdd.setOnClickListener { onAdd(product) }
         holder.binding.root.setOnClickListener { onItemClick(product) }
     }

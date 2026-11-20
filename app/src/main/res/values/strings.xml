@@ -197,4 +197,14 @@
     <string name="msg_user_deleted">Usuario eliminado</string>
     <string name="msg_users_error">No se pudieron cargar los usuarios</string>
     <string name="hint_new_password">Contraseña inicial (mín. 8, letras y números)</string>
+    <string name="msg_products_error">No se pudieron cargar los productos</string>
+    <string name="msg_product_deleted">Producto eliminado</string>
+    <string name="msg_no_products">Esta panadería aún no tiene productos</string>
+    <string name="msg_no_bakeries">Aún no hay panaderías registradas</string>
+    <string name="photo_source_title">Agregar foto</string>
+    <string name="photo_camera">Cámara</string>
+    <string name="photo_gallery">Galería</string>
+    <string name="hint_ingredients">Ingredientes</string>
+    <string name="hint_allergens">Alérgenos</string>
+    <string name="msg_photo_error">No se pudo leer la imagen</string>
 </resources>
